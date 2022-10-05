@@ -43,6 +43,14 @@ namespace Player
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""TotalMovement"",
+                    ""type"": ""Value"",
+                    ""id"": ""19238ce7-8d1f-48e9-aa15-4638695be253"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -122,6 +130,61 @@ namespace Player
                     ""action"": ""SayingSomething"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""c87c25f3-65f7-4638-aea6-033e8c5a94e8"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TotalMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""2ff5bea6-1b14-4ea9-a7a1-fa31f9dd7009"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TotalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""1a0e24b5-857e-4f37-8c9d-fb21db63d894"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TotalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7ec70776-8334-4d0d-9837-fd068fc6ff95"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TotalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""0f0b0af0-0295-4372-bf46-051817ebcc38"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TotalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -133,6 +196,7 @@ namespace Player
             m_PlayerActionMap_HorizontalMovement = m_PlayerActionMap.FindAction("HorizontalMovement", throwIfNotFound: true);
             m_PlayerActionMap_VerticalMovement = m_PlayerActionMap.FindAction("VerticalMovement", throwIfNotFound: true);
             m_PlayerActionMap_SayingSomething = m_PlayerActionMap.FindAction("SayingSomething", throwIfNotFound: true);
+            m_PlayerActionMap_TotalMovement = m_PlayerActionMap.FindAction("TotalMovement", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -185,6 +249,7 @@ namespace Player
         private readonly InputAction m_PlayerActionMap_HorizontalMovement;
         private readonly InputAction m_PlayerActionMap_VerticalMovement;
         private readonly InputAction m_PlayerActionMap_SayingSomething;
+        private readonly InputAction m_PlayerActionMap_TotalMovement;
         public struct PlayerActionMapActions
         {
             private @PlayerControls m_Wrapper;
@@ -192,6 +257,7 @@ namespace Player
             public InputAction @HorizontalMovement => m_Wrapper.m_PlayerActionMap_HorizontalMovement;
             public InputAction @VerticalMovement => m_Wrapper.m_PlayerActionMap_VerticalMovement;
             public InputAction @SayingSomething => m_Wrapper.m_PlayerActionMap_SayingSomething;
+            public InputAction @TotalMovement => m_Wrapper.m_PlayerActionMap_TotalMovement;
             public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -210,6 +276,9 @@ namespace Player
                     @SayingSomething.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnSayingSomething;
                     @SayingSomething.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnSayingSomething;
                     @SayingSomething.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnSayingSomething;
+                    @TotalMovement.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnTotalMovement;
+                    @TotalMovement.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnTotalMovement;
+                    @TotalMovement.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnTotalMovement;
                 }
                 m_Wrapper.m_PlayerActionMapActionsCallbackInterface = instance;
                 if (instance != null)
@@ -223,6 +292,9 @@ namespace Player
                     @SayingSomething.started += instance.OnSayingSomething;
                     @SayingSomething.performed += instance.OnSayingSomething;
                     @SayingSomething.canceled += instance.OnSayingSomething;
+                    @TotalMovement.started += instance.OnTotalMovement;
+                    @TotalMovement.performed += instance.OnTotalMovement;
+                    @TotalMovement.canceled += instance.OnTotalMovement;
                 }
             }
         }
@@ -232,6 +304,7 @@ namespace Player
             void OnHorizontalMovement(InputAction.CallbackContext context);
             void OnVerticalMovement(InputAction.CallbackContext context);
             void OnSayingSomething(InputAction.CallbackContext context);
+            void OnTotalMovement(InputAction.CallbackContext context);
         }
     }
 }

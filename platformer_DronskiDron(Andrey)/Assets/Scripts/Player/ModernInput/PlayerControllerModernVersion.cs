@@ -8,25 +8,25 @@ namespace Player
     {
         [SerializeField] private float _speed = 5f;
 
-        private float _defaultXDirection = 0;
-        private float _defaultYDirection = 0;
+        private Rigidbody2D _rigidbody;
+        private Vector2 _direction;
 
 
-        private void Update()
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+        }
+
+
+        private void FixedUpdate()
         {
             PlayerMover();
         }
 
 
-        public void SetDirectionX(float xDirection)
+        public void SetDirection(Vector2 direction)
         {
-            _defaultXDirection = xDirection;
-        }
-
-
-        public void SetDirectionY(float yDirection)
-        {
-            _defaultYDirection = yDirection;
+            _direction = direction;
         }
 
 
@@ -38,13 +38,10 @@ namespace Player
 
         private void PlayerMover()
         {
-            {
-                var deltaX = _defaultXDirection * _speed * Time.deltaTime;
-                var deltaY = _defaultYDirection * _speed * Time.deltaTime;
-                var newXPosition = transform.position.x + deltaX;
-                var newYPosition = transform.position.y + deltaY;
-                transform.position = new Vector3(newXPosition, newYPosition, transform.position.z);
-            }
+                if (_direction.magnitude > 0)
+                {
+                    _rigidbody.velocity = new Vector2(_direction.x * _speed, _rigidbody.velocity.y);
+                }
         }
 
     }

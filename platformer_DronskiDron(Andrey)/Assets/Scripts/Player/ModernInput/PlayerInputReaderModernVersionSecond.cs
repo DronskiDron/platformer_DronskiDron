@@ -9,22 +9,14 @@ namespace Player
     {
         [SerializeField] private PlayerControllerModernVersion _player;
         
-        private void OnHorizontalMovement(InputValue context)
+        private void OnTotalMovement(InputValue context)
         {
-            var xDirection = context.Get<float>();
+            var direction = context.Get<Vector2>();
 
-            _player.SetDirectionX(xDirection);
+            _player.SetDirection(direction);
 
         }
 
-
-        private void OnVerticalMovement(InputValue context)
-        {
-            var yDirection = context.Get<float>();
-
-            _player.SetDirectionY(yDirection);
-
-        }
 
         private void OnSayingSomething(InputValue context)
         {
