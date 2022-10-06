@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerControllerModernVersion : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float _speed = 5f;
 
@@ -38,10 +38,7 @@ namespace Player
 
         private void PlayerMover()
         {
-                if (_direction.magnitude > 0)
-                {
-                    _rigidbody.velocity = new Vector2(_direction.x * _speed, _rigidbody.velocity.y);
-                }
+            _rigidbody.velocity = new Vector2(_direction.x * _speed, _rigidbody.velocity.y);
         }
 
     }
