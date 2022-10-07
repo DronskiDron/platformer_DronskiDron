@@ -35,6 +35,14 @@ namespace Player
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jumping"",
+                    ""type"": ""Value"",
+                    ""id"": ""29a5fff7-5c4a-4f47-9240-df965896d8fc"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -50,7 +58,7 @@ namespace Player
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""2D Vector"",
+                    ""name"": ""WASD"",
                     ""id"": ""c87c25f3-65f7-4638-aea6-033e8c5a94e8"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -103,6 +111,28 @@ namespace Player
                     ""action"": ""TotalMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""1b198e7b-ca80-429b-a220-dae07454ea0f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jumping"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""1e6996da-5ee2-449f-98ef-6d28ce352470"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jumping"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -113,6 +143,7 @@ namespace Player
             m_PlayerActionMap = asset.FindActionMap("PlayerActionMap", throwIfNotFound: true);
             m_PlayerActionMap_SayingSomething = m_PlayerActionMap.FindAction("SayingSomething", throwIfNotFound: true);
             m_PlayerActionMap_TotalMovement = m_PlayerActionMap.FindAction("TotalMovement", throwIfNotFound: true);
+            m_PlayerActionMap_Jumping = m_PlayerActionMap.FindAction("Jumping", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -164,12 +195,14 @@ namespace Player
         private IPlayerActionMapActions m_PlayerActionMapActionsCallbackInterface;
         private readonly InputAction m_PlayerActionMap_SayingSomething;
         private readonly InputAction m_PlayerActionMap_TotalMovement;
+        private readonly InputAction m_PlayerActionMap_Jumping;
         public struct PlayerActionMapActions
         {
             private @PlayerControls m_Wrapper;
             public PlayerActionMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @SayingSomething => m_Wrapper.m_PlayerActionMap_SayingSomething;
             public InputAction @TotalMovement => m_Wrapper.m_PlayerActionMap_TotalMovement;
+            public InputAction @Jumping => m_Wrapper.m_PlayerActionMap_Jumping;
             public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -185,6 +218,9 @@ namespace Player
                     @TotalMovement.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnTotalMovement;
                     @TotalMovement.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnTotalMovement;
                     @TotalMovement.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnTotalMovement;
+                    @Jumping.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnJumping;
+                    @Jumping.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnJumping;
+                    @Jumping.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnJumping;
                 }
                 m_Wrapper.m_PlayerActionMapActionsCallbackInterface = instance;
                 if (instance != null)
@@ -195,6 +231,9 @@ namespace Player
                     @TotalMovement.started += instance.OnTotalMovement;
                     @TotalMovement.performed += instance.OnTotalMovement;
                     @TotalMovement.canceled += instance.OnTotalMovement;
+                    @Jumping.started += instance.OnJumping;
+                    @Jumping.performed += instance.OnJumping;
+                    @Jumping.canceled += instance.OnJumping;
                 }
             }
         }
@@ -203,6 +242,7 @@ namespace Player
         {
             void OnSayingSomething(InputAction.CallbackContext context);
             void OnTotalMovement(InputAction.CallbackContext context);
+            void OnJumping(InputAction.CallbackContext context);
         }
     }
 }
