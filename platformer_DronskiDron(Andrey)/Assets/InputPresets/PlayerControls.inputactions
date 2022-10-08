@@ -3,12 +3,12 @@
     "maps": [
         {
             "name": "PlayerActionMap",
-            "id": "2d19ece9-75f1-493a-a8a9-82b71a39943b",
+            "id": "0f1fa342-5e5f-4242-bf45-3f1c19d6b22b",
             "actions": [
                 {
                     "name": "SayingSomething",
                     "type": "Button",
-                    "id": "ba0de3df-3c7d-497e-a1c5-535239a9bb4c",
+                    "id": "05977bd2-6936-4d53-986f-714921b7c957",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -16,7 +16,7 @@
                 {
                     "name": "TotalMovement",
                     "type": "Value",
-                    "id": "19238ce7-8d1f-48e9-aa15-4638695be253",
+                    "id": "656bfa39-51ed-40ca-8479-40bd859044f6",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -24,7 +24,7 @@
                 {
                     "name": "Jumping",
                     "type": "Value",
-                    "id": "29a5fff7-5c4a-4f47-9240-df965896d8fc",
+                    "id": "b67c8f95-a5fd-4987-b410-ba8af1edc8ea",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -33,7 +33,7 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "bfb9994c-8d17-4cac-b571-10370f6fff24",
+                    "id": "2ebafaf9-d29c-403e-bf00-b9bac0d70b0b",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -44,7 +44,7 @@
                 },
                 {
                     "name": "WASD",
-                    "id": "c87c25f3-65f7-4638-aea6-033e8c5a94e8",
+                    "id": "c266f1c9-f066-4d02-a158-023832199c1c",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -55,7 +55,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "2ff5bea6-1b14-4ea9-a7a1-fa31f9dd7009",
+                    "id": "49f6d55c-04de-4f65-9d6b-a9116f6f0ed3",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -66,7 +66,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "1a0e24b5-857e-4f37-8c9d-fb21db63d894",
+                    "id": "7630fa2a-e515-48e4-af2c-801d388aa1ca",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -77,7 +77,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "7ec70776-8334-4d0d-9837-fd068fc6ff95",
+                    "id": "75e8fff3-5c6e-4d80-b884-d8d6ff63deef",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -88,7 +88,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "0f0b0af0-0295-4372-bf46-051817ebcc38",
+                    "id": "47bf1cde-77a6-4f3e-9b4b-d62d4762d471",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -99,7 +99,7 @@
                 },
                 {
                     "name": "2D Vector",
-                    "id": "1b198e7b-ca80-429b-a220-dae07454ea0f",
+                    "id": "d7d90622-7dd9-40ae-b7c0-d0efe6f38454",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -110,7 +110,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "1e6996da-5ee2-449f-98ef-6d28ce352470",
+                    "id": "5d2b46ab-b8c4-4372-a021-7b847f06b505",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
